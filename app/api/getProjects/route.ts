@@ -4,7 +4,7 @@ import { groq } from "next-sanity";
 import { sanityClient } from "@/sanity";
 
 const query = groq`
-    *[_type == "project"] {
+    *[_type == "project"] | order(_createdAt) {
       ...,
       technologies[]->
     }
