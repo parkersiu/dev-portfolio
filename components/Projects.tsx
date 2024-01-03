@@ -1,22 +1,27 @@
 "use client";
 
+import { urlFor } from "@/sanity";
+import { Project } from "@/typings";
 import { motion } from "framer-motion";
 
-export default function Projects() {
-  const projects = [1, 2, 3, 4, 5];
+type Props = {
+  projects: Project[];
+};
+
+export default function Projects({ projects }: Props) {
   return (
     <motion.div
       initial={{ opacity: 0 }}
       transition={{ duration: 1.5 }}
       whileInView={{ opacity: 1 }}
-      className="h-screen relative flex overflow-hidden flex-col text-left md:flex-row max-w-full justify-evenly mx-auto items-center z-0"
+      className="h-screen relative flex overflow-hidden flex-col text-left md:flex-row max-w-full justify-evenly mx-auto items-center z-0 pt-10"
     >
       <h3 className="absolute top-24 uppercase tracking-[20px] text-gray-500 text-2xl">
         Projects
       </h3>
 
       <div className="relative w-full flex overflow-x-scroll overflow-y-hidden snap-x snap-mandatory z-20 scrollbar scrollbar-thin scrollbar-track-gray-400/20 scrollbar-thumb-[#F7AB0A]/80">
-        {projects.map((project, i) => (
+        {projects?.map((project, i) => (
           <div
             className="w-screen flex-shrink-0 snap-center flex flex-col space-y-5 items-center justify-center p-20 md:p-44 h-screen"
             key={i}
@@ -26,8 +31,9 @@ export default function Projects() {
               transition={{ duration: 1.2 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              src="https://images.g2crowd.com/uploads/product/image/social_landscape/social_landscape_96102ac6497377cd53da621075fe828e/sanity.png"
+              src={urlFor(project.image).url()}
               alt="Portfolio image"
+              className="max-h-96"
             />
 
             <div className="space-y-10 px-0 md:px-10 max-w-6xl">
@@ -35,13 +41,22 @@ export default function Projects() {
                 <span className="underline decoration-[#F7AB0A]/50">
                   Project {i + 1} of {projects.length}:
                 </span>{" "}
-                Project Name
+                {project?.title}
               </h4>
+
+              <div className="flex items-center space-x-2 justify-center">
+                {project?.technologies.map((technology) => (
+                  <img
+                    className="h-10 w-10"
+                    key={technology._id}
+                    src={urlFor(technology.image).url()}
+                    alt="technology logo"
+                  />
+                ))}
+              </div>
+
               <p className="text-lg text-center md:text-left">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Amet
-                impedit ratione quo aliquam eaque dignissimos a, veniam
-                doloremque aut unde ea consectetur cum laborum natus dolores
-                commodi nam accusantium deleniti.
+                {project?.summary}
               </p>
             </div>
           </div>

@@ -1,7 +1,14 @@
 "use client";
+import { urlFor } from "@/sanity";
+import pageInfo from "@/sanity/schemas/pageInfo";
+import { PageInfo } from "@/typings";
 import { motion } from "framer-motion";
 
-export default function About() {
+type Props = {
+  pageInfo: PageInfo;
+};
+
+export default function About({ pageInfo }: Props) {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -14,7 +21,7 @@ export default function About() {
       </h3>
 
       <motion.img
-        src="/Headshot.jpg"
+        src={urlFor(pageInfo?.profilePic).url()}
         initial={{
           x: -200,
           opacity: 0,
@@ -33,20 +40,7 @@ export default function About() {
           <span className="underline decoration-[#F7AB0A]/50">little</span>{" "}
           background
         </h4>
-        <p className="text-base">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus
-          illo adipisci deserunt excepturi recusandae sit enim! Dolorum animi
-          magnam labore, nulla laudantium facere similique culpa exercitationem,
-          earum dolor asperiores explicabo. Lorem ipsum dolor, sit amet
-          consectetur adipisicing elit. Doloribus illo adipisci deserunt
-          excepturi recusandae sit enim! Dolorum animi magnam labore, nulla
-          laudantium facere similique culpa exercitationem, earum dolor
-          asperiores explicabo. Lorem ipsum dolor, sit amet consectetur
-          adipisicing elit. Doloribus illo adipisci deserunt excepturi
-          recusandae sit enim! Dolorum animi magnam labore, nulla laudantium
-          facere similique culpa exercitationem, earum dolor asperiores
-          explicabo.
-        </p>
+        <p className="text-base">{pageInfo.backgroundInformation}</p>
       </div>
     </motion.div>
   );

@@ -20,6 +20,8 @@ export interface PageInfo extends SanityBody {
   email: string;
   role: string;
   heroImage: string;
+  name: string;
+  phoneNumber: string;
   profilePic: Image;
 }
 
