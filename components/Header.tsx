@@ -33,8 +33,10 @@ export default function Header({ socials }: Props) {
           <SocialIcon
             key={social._id}
             url={social.url}
-            fgColor="gray"
+            fgColor="currentColor"
             bgColor="transparent"
+            target="_black"
+            className="social-icon-color"
           />
         ))}
       </motion.div>
@@ -57,12 +59,12 @@ export default function Header({ socials }: Props) {
           className="flex flex-row items-center text-gray-300 cursor-pointer"
         >
           <SocialIcon
-            className="cursor-pointer"
+            className="cursor-pointer social-icon-color"
             network="email"
-            fgColor="gray"
+            fgColor="currentColor"
             bgColor="transparent"
           />
-          <p className="uppercase hidden md:inline-flex text-sm text-gray-400">
+          <p className="uppercase hidden md:inline-flex text-sm text-gray-400 hover:text-white">
             Get In Touch
           </p>
         </motion.div>
