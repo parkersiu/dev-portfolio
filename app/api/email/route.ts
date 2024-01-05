@@ -15,13 +15,14 @@ export async function POST(request: Request) {
   const message = `
   Name: ${body.name}\r\n
   Email: ${body.email}\r\n
+  Subject: ${body.subject}\r\n
   Message: ${body.message}
   `;
   const data = {
     to: "parker.siu@gmail.com",
-    from: "test@email.com",
+    from: "parker@parkersiu.com",
     subject: "Contact message from portfolio site",
-    test: message,
+    text: message,
     html: message.replace(/\r\n/g, "<br>"),
   };
 

@@ -3,6 +3,9 @@
 import { PageInfo } from "@/typings";
 import { PhoneIcon, MapPinIcon, EnvelopeIcon } from "@heroicons/react/24/solid";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { FormEvent, useState } from "react";
+import { useToast } from "@/components/ui/use-toast";
+import { ContactForm } from "./ContactForm";
 
 type Inputs = {
   name: string;
@@ -17,9 +20,32 @@ type Props = {
 
 export default function ContactMe({ pageInfo }: Props) {
   const { register, handleSubmit } = useForm<Inputs>();
+  const [message, setMessage] = useState<string>("");
+  const [status, setStatus] = useState<string>("");
 
-  const onSubmit: SubmitHandler<Inputs> = (formData) => {
-    window.location.href = `mailto:parker.siu@gmail.com?subject=${formData.subject}&body=Hi, my name is ${formData.name}. ${formData.message}`;
+  const { toast } = useToast();
+
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData: { [key: string]: string } = {};
+    const elements = e.currentTarget.elements as unknown as Array<
+      HTMLInputElement | HTMLTextAreaElement | HTMLButtonElement
+    >;
+
+    Array.from(elements).forEach((field) => {
+      if (!field.name) return;
+      formData[field.name] = field.value;
+    });
+
+    await fetch("/api/email", {
+      method: "POST",
+      body: JSON.stringify(formData),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        setMessage(res.message);
+        setStatus(res.status);
+      });
   };
 
   return (
@@ -52,45 +78,7 @@ export default function ContactMe({ pageInfo }: Props) {
             <p className="text-2xl">{pageInfo.address}</p>
           </div>
         </div>
-
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col space-y-2 w-fit mx-auto"
-        >
-          <div className="flex space-x-2">
-            <input
-              {...register("name")}
-              placeholder="Name"
-              className="contactInput"
-              type="text"
-            />
-            <input
-              {...register("email")}
-              placeholder="Email"
-              className="contactInput"
-              type="email"
-            />
-          </div>
-
-          <input
-            {...register("subject")}
-            placeholder="Subject"
-            className="contactInput"
-            type="text"
-          />
-
-          <textarea
-            {...register("message")}
-            placeholder="Message"
-            className="contactInput"
-          />
-          <button
-            type="submit"
-            className="bg-[#F7AB0A] py-5 px-10 rounded-md text-black font-bold text-lg"
-          >
-            Submit
-          </button>
-        </form>
+        <ContactForm />
       </div>
     </div>
   );
