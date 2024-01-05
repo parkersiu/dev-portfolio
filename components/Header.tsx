@@ -35,7 +35,7 @@ export default function Header({ socials }: Props) {
             url={social.url}
             fgColor="currentColor"
             bgColor="transparent"
-            target="_black"
+            target="_blank"
             className="social-icon-color"
           />
         ))}
