@@ -51,32 +51,36 @@ export const ContactForm = () => {
         className="flex flex-col space-y-2 w-fit mx-auto"
         onSubmit={onContactFormSubmit}
       >
-        <div className="">
-          <label htmlFor="name" className="cursor-pointer sr-only">
-            Name
-          </label>
-          <input
-            type="text"
-            className="contactInput mr-1"
-            name="name"
-            id="name"
-            placeholder="Name"
-            required
-            disabled={disabled}
-          />
+        <div className="flex flex-col space-y-2 md:flex-row md:space-y-0">
+          <div>
+            <label htmlFor="name" className="cursor-pointer sr-only">
+              Name
+            </label>
+            <input
+              type="text"
+              className="contactInput md:mr-1"
+              name="name"
+              id="name"
+              placeholder="Name"
+              required
+              disabled={disabled}
+            />
+          </div>
 
-          <label htmlFor="email" className="cursor-pointer sr-only">
-            Email
-          </label>
-          <input
-            type="email"
-            className="contactInput ml-1"
-            name="email"
-            id="email"
-            placeholder="Email"
-            required
-            disabled={disabled}
-          />
+          <div>
+            <label htmlFor="email" className="cursor-pointer sr-only">
+              Email
+            </label>
+            <input
+              type="email"
+              className="contactInput md:ml-1"
+              name="email"
+              id="email"
+              placeholder="Email"
+              required
+              disabled={disabled}
+            />
+          </div>
         </div>
 
         <label htmlFor="subject" className="cursor-pointer hidden">
