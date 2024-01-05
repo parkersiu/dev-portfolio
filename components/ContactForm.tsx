@@ -107,10 +107,6 @@ export const ContactForm = () => {
 
         <button
           type="submit"
-          /* className={`btn btn-block !mt-4 ${
-            disabled ? "btn-disabled" : "btn-primary"
-          }`} */
-          /* className="bg-[#F7AB0A] py-5 px-10 rounded-md text-black font-bold text-lg" */
           className={`py-5 px-10 rounded-md text-white font-bold text-lg ${
             disabled ? "bg-gray-500" : "bg-[#F7AB0A]"
           }`}
