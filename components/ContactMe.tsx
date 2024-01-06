@@ -50,11 +50,11 @@ export default function ContactMe({ pageInfo }: Props) {
 
   return (
     <div className="h-screen flex relative flex-col text-center md:text-left md:flex-row max-w-7xl px-10 justify-evenly mx-auto items-center">
-      <h3 className="absolute top-20 uppercase tracking-[20px] text-gray-500 text-2xl">
+      <h3 className="absolute top-8 md:top-20 uppercase tracking-widest md:tracking-[20px] text-gray-500 text-2xl">
         Contact
       </h3>
 
-      <div className="flex flex-col space-y-10">
+      <div className="flex flex-col space-y-1 md:space-y-10">
         <h4 className="text-2xl md:text-4xl font-semibold text-center">
           Want to get in touch?{" "}
           <span className="decoration-[#F7AB0A]/50 underline">
@@ -62,7 +62,7 @@ export default function ContactMe({ pageInfo }: Props) {
           </span>
         </h4>
 
-        <div className="space-y-0 md:space-y-6">
+        <div className="space-y-1 md:space-y-6">
           <div className="flex items-center space-x-5 justify-center">
             <PhoneIcon className="text-[#F7AB0A] h-7 w-7 animate-pulse" />
             <p className="text-lg md:text-2xl">{pageInfo.phoneNumber}</p>
