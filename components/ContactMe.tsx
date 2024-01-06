@@ -55,27 +55,27 @@ export default function ContactMe({ pageInfo }: Props) {
       </h3>
 
       <div className="flex flex-col space-y-10">
-        <h4 className="text-4xl font-semibold text-center">
+        <h4 className="text-2xl md:text-4xl font-semibold text-center">
           Want to get in touch?{" "}
           <span className="decoration-[#F7AB0A]/50 underline">
             Let&apos;s Talk.
           </span>
         </h4>
 
-        <div className="space-y-10">
+        <div className="space-y-0 md:space-y-6">
           <div className="flex items-center space-x-5 justify-center">
             <PhoneIcon className="text-[#F7AB0A] h-7 w-7 animate-pulse" />
-            <p className="text-2xl">{pageInfo.phoneNumber}</p>
+            <p className="text-lg md:text-2xl">{pageInfo.phoneNumber}</p>
           </div>
 
           <div className="flex items-center space-x-5 justify-center">
             <EnvelopeIcon className="text-[#F7AB0A] h-7 w-7 animate-pulse" />
-            <p className="text-2xl">{pageInfo.email}</p>
+            <p className="text-lg md:text-2xl">{pageInfo.email}</p>
           </div>
 
           <div className="flex items-center space-x-5 justify-center">
             <MapPinIcon className="text-[#F7AB0A] h-7 w-7 animate-pulse" />
-            <p className="text-2xl">{pageInfo.address}</p>
+            <p className="text-lg md:text-2xl">{pageInfo.address}</p>
           </div>
         </div>
         <ContactForm />
