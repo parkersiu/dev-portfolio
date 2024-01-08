@@ -10,7 +10,7 @@ type Props = {
 
 export default function ExperienceCard({ experience }: Props) {
   return (
-    <article className="flex flex-col rounded-lg items-center space-y-5 flex-shrink-0 w-[500px] md:w-[600px] xl:w-[900px] snap-center bg-[#292929] hover:opacity-100 p-5 opacity-40 cursor-pointer transition-opacity duration-200 overflow-hidden">
+    <article className="flex flex-col rounded-lg items-center space-y-5 flex-shrink-0 w-screen md:w-[600px] xl:w-[900px] snap-start md:snap-center bg-[#292929] opacity-100 md:opacity-40 md:hover:opacity-100 px-5 py-10 md:my-5 cursor-pointer transition-opacity duration-200 overflow-hidden">
       <motion.img
         initial={{
           y: -100,
@@ -24,16 +24,17 @@ export default function ExperienceCard({ experience }: Props) {
         alt="Company logo"
       />
 
-      <div className="px-0 md:px-10">
+      <div className="px-0 md:px-10 text-center">
         <h4 className="text-4xl font-light">{experience?.jobTitle}</h4>
         <p className="font-bold text-2xl mt-1">{experience?.company}</p>
-        <div className="flex space-x-2 my-2">
+        <div className="flex space-x-2 my-2 justify-center">
           {experience.technologies &&
             experience.technologies.map((technology) => (
               <img
                 key={technology._id}
-                className="h-10 w-10 rounded-full"
+                className="h-5 w-5 md:h-10 md:w-10 rounded-full"
                 src={urlFor(technology?.image).url()}
+                alt={technology.title}
               />
             ))}
         </div>
@@ -43,7 +44,7 @@ export default function ExperienceCard({ experience }: Props) {
             ? "Present"
             : new Date(experience.dateEnded).toDateString()}
         </p>
-        <ul className="list-disc space-y-4 ml-5 text-md max-h-96 overflow-y-scroll md:overflow-auto pr-5 scrollbar-thin scrollbar-track-black scrollbar-thumb-[#F7AB0A]/80">
+        <ul className="list-disc text-left space-y-2 md:space-y-4 px-5 text-md max-h-96 overflow-y-scroll md:overflow-auto scrollbar-thin scrollbar-track-black scrollbar-thumb-[#F7AB0A]/80">
           {experience.points.map((point, i) => (
             <li key={i}>{point}</li>
           ))}
